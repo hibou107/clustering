@@ -24,17 +24,21 @@ class DataTrainer(conf: TrainingConf) extends Serializable {
       .getOrCreate()
 
     val parsedBikeStations = spark.read.textFile(conf.inputFile).rdd.map(BikeStation.parse)
-    parsedBikeStations.foreach(println)
+
     val validBikeStations = parsedBikeStations.collect {
       case Right(station) =>
-        logger.info(station.toString)
         station
     }
 
     val parsedData = validBikeStations.map(station => Vectors.dense(Array(station.latitude, station.longitude)))
 
     val clusters = KMeans.train(parsedData, conf.nbClusters, conf.nbIterations)
+
+    logger.info("cluster Centers")
+    logger.info(clusters.clusterCenters)
+
     clusters.save(parsedData.sparkContext, conf.modelPath)
+
     val invalidData = parsedBikeStations.collect {
       case Left(error) => error
     }
