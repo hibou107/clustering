@@ -37,6 +37,9 @@ When the program finishes, run `run_prediction.sh` to make prediction on new dat
 
 # Backlogs
 
+## Convert to Jsonlines format
+The input data is actually in json format. It can not be stored in a distributed system and be read in parallel. We need to convert this input into Jsonlines format
+
 ## Jenkins automation
 The building process and test must be automated by Jenkins
 
