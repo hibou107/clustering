@@ -41,7 +41,7 @@ When the program finishes, run `run_prediction.sh` to make prediction on new dat
 The building process and test must be automated by Jenkins
 
 ## Deployment automation
-This can be a step from Jenkins, the deployment of master branch should automated
+This can be a step from Jenkins, the deployment of master branch should be automated
 
 ## Better errors handling
 For the moment the are only one log message to count the total number of invalid input data
