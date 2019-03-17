@@ -31,7 +31,7 @@ class DataPrediction(conf: PredictionConf) extends Serializable {
     val w = new BufferedWriter(new FileWriter(conf.outputFile))
     try {
       collectedResult.foreach { result =>
-        w.write(result.asJson.toString() + "\n")
+        w.write(result.asJson.noSpaces + "\n")
       }
 
     } finally {
